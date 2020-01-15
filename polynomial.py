@@ -7,10 +7,7 @@ class polynomial(object):
             if(self.coeff[i] !=0):
                 pos = (i)
         return pos
-    def add(self,polyB):
-        addition = []
-        k = min(order(self.coeff),order(polyB))
 def main():
-    p = polynomial([0,2,4,5,0])
-    print(p.order())
+    p = polynomial([0,2,4,5])
+    pB = polynomial([1,2,4,5])
 main()
