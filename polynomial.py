@@ -19,11 +19,13 @@ class polynomial(object):
         elif (polyB.order() < self.order()):
             addition.extend(self.coeff[j:])
         return addition
-    
+    def differentiate(self):
+        diff = []
+        for i in range(1,len(self.coeff)):
+            diff.append((self.coeff[i]*(i)))
+        return diff
 def main():
-    p = polynomial([0,2,0,5])
+    p = polynomial([2,0,0,10])
     pB = polynomial([0,1,2,4,10])
-    print(p.order())
-    print(pB.order())
-    print(p.add(pB))
+    print(pB.differentiate())
 main()
