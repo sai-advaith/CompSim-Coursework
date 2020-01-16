@@ -24,8 +24,13 @@ class polynomial(object):
         for i in range(1,len(self.coeff)):
             diff.append((self.coeff[i]*(i)))
         return diff
+    def integrate(self,c):
+        integrate = [c]
+        for i in range(len(self.coeff)):
+            integrate.append((self.coeff[i])/(i+1))
+        return integrate
 def main():
     p = polynomial([2,0,0,10])
     pB = polynomial([0,1,2,4,10])
-    print(pB.differentiate())
+    print(p.integrate(10))
 main()
