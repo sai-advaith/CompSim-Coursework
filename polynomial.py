@@ -24,13 +24,21 @@ class polynomial(object):
         for i in range(1,len(self.coeff)):
             diff.append((self.coeff[i]*(i)))
         return diff
-    def integrate(self,c):
-        integrate = [c]
+    def integrate(self):
+        integrate = [2] #c = 2
         for i in range(len(self.coeff)):
             integrate.append((self.coeff[i])/(i+1))
         return integrate
+    def strForm(self):
+        s = str(self.coeff[0])
+        for i in range(1,len(self.coeff)):
+            if (self.coeff[i] < 0):
+                s = s + " - " + str(abs(self.coeff[i])) + "x" + str(i)
+            elif (self.coeff[i] > 0):
+                s = s + " + " + str(abs(self.coeff[i])) + "x" + str(i)
+        return s
 def main():
-    p = polynomial([2,0,0,10])
-    pB = polynomial([0,1,2,4,10])
-    print(p.integrate(10))
+    p = polynomial([2,0,4,-1,0,6])
+    pB = polynomial([-1,-3,0,4.5])
+    print(pB.strForm()) 
 main()
