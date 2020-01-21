@@ -50,7 +50,7 @@ class polynomial(object):
         """
         Representing a polynomial as a string
         """
-        s = str(self.coeff[0]) # this method attempts to print the objects in string format. 
+        s = str(self.coeff[0]) 
         for i in range(1,len(self.coeff)):
             if (self.coeff[i] < 0):
                 s = s + " - " + str(abs(self.coeff[i])) + "x" + str(i) # to prevent problems with sign different cases have been created for negative and positive numbers
