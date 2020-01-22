@@ -46,7 +46,7 @@ class polynomial(object):
             (integrate.coeff).append((self.coeff[i])/(i+1))
         return integrate 
 
-    def strForm(self):
+    def __str__(self):
         """
         Representing a polynomial as a string
         """
