@@ -17,7 +17,7 @@ class polynomial(object):
         Adding two polynomials and returning an object which is the result of addition of two polynomials
         """
         k = min(polyB.order(),self.order()) # the addition will take place only till the length of the smaller list
-        addition = polynomial([]) # object will be returned from this method
+        addition = polynomial([]) # object will be returned from this method    
         j = 0
         while (j<=k):
             (addition.coeff).append(polyB.coeff[j]+self.coeff[j])
