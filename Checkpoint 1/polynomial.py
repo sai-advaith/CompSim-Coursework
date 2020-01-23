@@ -19,7 +19,7 @@ class Polynomial(object):
         k = min(polyB.order(),self.order()) # the addition will take place only till the length of the smaller list
         addition = Polynomial([]) # object will be returned from this method    
         j = 0
-        if (k != 0): # case when the list is empty
+        if(len(self.coeff) > 0 and len(polyB.coeff) > 0):
             while (j<=k):
                 (addition.coeff).append(polyB.coeff[j]+self.coeff[j])
                 j +=1
