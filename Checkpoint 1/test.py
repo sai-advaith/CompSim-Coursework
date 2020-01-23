@@ -6,4 +6,4 @@ if __name__ == "__main__":
     print("order of polynomialA is: ",polynomialA.order())
     print("addition of polynomialA and polynomialB is: ",str(polynomialA.add(polynomialB)))
     print("first derivative of polynomialA is: ",str(polynomialA.differentiate()))
-    print("Antiderivative of polynomialA is: ", str(polynomialA.integrate(2)))
+    print("Antiderivative of polynomialA is: ", str(polynomialA.integrate(2))) #We will consider c to be 2 in this case
