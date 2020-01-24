@@ -20,7 +20,7 @@ class Radiactive(object):
         """
         s = ""
         for i in range(len(self.matrix)):
-            for j in range(len(self.matrix[0])):
+            for j in range(len(self.matrix)):
                 s = s + str(self.matrix[i][j]) + " "
             s = s + "\n"
         return s
@@ -32,10 +32,11 @@ class Radiactive(object):
         while(not self.half_check()):
             for i in range(len(self.matrix)):
                 for j in range(len(self.matrix)):
-                    if (self.matrix[i][j] == 0 and ((abs(self.prob) >= random.uniform(0,1)))):
+                    k = random.uniform(0,1)
+                    if (self.matrix[i][j] == 0 and ((abs(self.prob) >= k))):
                         self.matrix[i][j] = 1
                 half_life += self.timestep
-        print(self.matrix)
+        print(str(self))
         return half_life           
     def decayed(self):
         """
