@@ -10,7 +10,7 @@ class Radiactive(object):
         boolean function to see if half of the nuclei decayed
         """
         k  = len(self.matrix) * len(self.matrix[0])
-        if (self.decayed() == k // 2):
+        if (self.decayed() == (k / 2)):
             return True
         else:
             return False
@@ -29,12 +29,13 @@ class Radiactive(object):
         In this method we will be showing the decay of the nuclei based on the timestep. return simulated half life
         """
         half_life = 0
-        while(self.half_check()):
+        while(not self.half_check()):
             for i in range(len(self.matrix)):
-                for j in range(len(self.matrix[0])):
-                        if (self.matrix[i][j] == 0 and ((abs(self.prob) > random.random()))):
-                                    self.matrix[i][j] = 1
-            half_life += self.timestep
+                for j in range(len(self.matrix)):
+                    if (self.matrix[i][j] == 0 and ((abs(self.prob) >= random.uniform(0,1)))):
+                        self.matrix[i][j] = 1
+                half_life += self.timestep
+        print(self.matrix)
         return half_life           
     def decayed(self):
         """
