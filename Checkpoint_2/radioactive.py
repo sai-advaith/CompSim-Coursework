@@ -29,15 +29,13 @@ class Radiactive(object):
         In this method we will be showing the decay of the nuclei based on the timestep. return simulated half life
         """
         half_life = 0
-        for i in range(len(self.matrix)):
-            for j in range(len(self.matrix[0])):
-                if (not self.half_check()):
-                    half_life += self.timestep
-                    if (self.matrix[i][j] == 0 and ((abs(self.prob) < random.random()))):
-                                self.matrix[i][j] = 1
-                else:
-                    return half_life
-                     
+        while(self.half_check()):
+            for i in range(len(self.matrix)):
+                for j in range(len(self.matrix[0])):
+                        if (self.matrix[i][j] == 0 and ((abs(self.prob) > random.random()))):
+                                    self.matrix[i][j] = 1
+            half_life += self.timestep
+        return half_life           
     def decayed(self):
         """
         In this method we will be showing the number of decayed atoms
