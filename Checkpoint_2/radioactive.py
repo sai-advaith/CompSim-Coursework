@@ -1,4 +1,4 @@
-class radiactive(object):
+class Radiactive(object):
     def  __init__(self,const,matrix,timestep):
         self.const = const
         self.matrix = matrix
@@ -7,10 +7,16 @@ class radiactive(object):
         """
         boolean function to see if half of the nuclei decayed
         """
-    def str_matrx(self):
+    def __str__(self):
         """
         String representation of the 2d array
         """
+        s = ""
+        for i in range(len(self.matrix)):
+            for j in range(len(self.matrix[0])):
+                s = s + str(self.matrix[i][j]) + " "
+            s = s + "\n"
+        return s
     def decay(self):
         """
         In this method we will be showing the decay of the nuclei based on the timestep. return simulated half life
@@ -19,10 +25,3 @@ class radiactive(object):
         """
         In this method we will determine the probability of decay
         """
-    
-if __name__ == "__main__":
-    N = int(input("number of the Iodine-128"))
-    decay_constant = float(input(""))
-
-    
-
