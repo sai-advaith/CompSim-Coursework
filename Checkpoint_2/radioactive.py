@@ -7,7 +7,7 @@ class Radiactive(object):
         self.prob = const*timestep
     def half_check(self):
         """
-        boolean function to see if half of the nuclei decayed
+        Boolean function to see if half of the nuclei decayed
         """
         k  = len(self.matrix) * len(self.matrix)
         return self.decayed() >= k / 2
