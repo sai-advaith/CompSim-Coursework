@@ -7,4 +7,9 @@ if __name__ == "__main__":
     matrix = [[0 for _  in  range(N)] for _ in range(N)]
     i = Radiactive(decay_constant,matrix,t_step)
     half = np.log(2) / decay_constant
-    print(i.decay())
+    k = i.decay()
+    print(str(i))
+    print("Initial number of undecayed nuclei: ", N*N,"\n")
+    print("Final number of undecayed nuclei: ",N*N - i.decayed(),"\n")
+    print("Simulation value of half-life: ",k,"\n")
+    print("Actual value of half-life: ",half,"\n")

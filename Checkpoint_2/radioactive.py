@@ -20,6 +20,10 @@ class Radiactive(object):
             for j in range(len(self.matrix)):
                 s = s + str(self.matrix[i][j]) + " "
             s = s + "\n"
+        print()
+        print("Representation of the array of nuclei: "+"\n")
+        print("0: Unedcayed nuclei")
+        print("1: Decayed nuclei"+"\n")
         return s
     def decay(self):
         """
@@ -35,7 +39,6 @@ class Radiactive(object):
                         if (abs(self.prob) >= random.random()):
                             self.matrix[i][j] = 1
             half_life += self.timestep
-        print(str(self))
         return half_life           
     def decayed(self):
         """
