@@ -4,7 +4,7 @@ if __name__ == "__main__":
     N = int(input("number of the Iodine-128: "))
     decay_constant = float(input("decay constant: "))
     t_step = float(input("timestep: "))
-    matrix = [[0]*N]*N
+    matrix = [[0 for _  in  range(N)] for _ in range(N)]
     i = Radiactive(decay_constant,matrix,t_step)
     half = np.log(2) / decay_constant
     print(i.decay())
