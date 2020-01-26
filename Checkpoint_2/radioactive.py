@@ -1,7 +1,7 @@
 import random
-class Radiactive(object):
+class Radioactive(object):
     def  __init__(self,const,matrix,timestep):
-        self.const = const
+        self.const = const 
         self.matrix = matrix
         self.timestep = timestep
         self.prob = const*timestep
@@ -10,7 +10,7 @@ class Radiactive(object):
         Boolean function to see if half of the nuclei decayed
         """
         k  = len(self.matrix) * len(self.matrix)
-        return self.decayed() >= k / 2
+        return self.decayed() >= k / 2 # function to detect if half_life has been attained
     def __str__(self):
         """
         String representation of the 2d array
@@ -19,7 +19,7 @@ class Radiactive(object):
         for i in range(len(self.matrix)):
             for j in range(len(self.matrix)):
                 s = s + str(self.matrix[i][j]) + " "
-            s = s + "\n"
+            s = s + "\n" # printing the nuclei of the element as a string
         print()
         print("Representation of the array of nuclei: "+"\n")
         print("0: Unedcayed nuclei")
@@ -37,16 +37,16 @@ class Radiactive(object):
                 for j in range(len(self.matrix)):
                     if (self.matrix[i][j] == 0):
                         if (abs(self.prob) >= random.random()):
-                            self.matrix[i][j] = 1
-            half_life += self.timestep
+                            self.matrix[i][j] = 1 # random.random() giving the ranom number between 0 and 1 as probability is never greated than one or less than 0
+            half_life += self.timestep # adding timestep after every N nuclei iterated
         return half_life           
     def decayed(self):
         """
         In this method we will be showing the number of decayed atoms
         """
-        c = 0
+        c = 0 # counting the decayed nuclei
         for i in range(len(self.matrix)):
             for j in range(len(self.matrix)):
                 if self.matrix[i][j] == 1:
-                    c += 1
+                    c += 1 # counting the number of decayed nuclei
         return c
