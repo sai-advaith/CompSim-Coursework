@@ -6,7 +6,7 @@ if __name__ == "__main__":
     Main method for testing
     """
 
-    polynomialA = Polynomial([2,0,4,-1,0,6]) # representation of 2 + 4x^2 - x^3 + 6x^5
+    polynomialA = Polynomial([0]) # representation of 2 + 4x^2 - x^3 + 6x^5
 
     polynomialB = Polynomial([-1,-3,0,4.5]) # representation of -1 -3x + 4.5x^3
     #  if the variable does not appear in the polynomial then its coefficient is 0
