@@ -6,37 +6,34 @@ class Mandelbrot(object):
         """
         Constructor
         """
-        self.width = width
-        self.height = height
-        self.grid = np.zeros(shape = (width,height))
-        self.xs = np.linspace(xlow,xhigh,width)
-        self.ys = np.linspace(ylow,yhigh,height)
+        self.width = width # width of the plot
+        self.height = height # height of the plot
+        self.grid = np.zeros(shape = (width,height)) # initializing a grid of zeros
+        self.xs = np.linspace(xlow,xhigh,width) # numpy array with high and low values initialized for a width for x axis. This forms the real axis
+        self.ys = np.linspace(ylow,yhigh,height) # numpy array with high and low values initialized for a width for y axis. This forms the imaginary axis
     def check_mandel(self,c):
         """
         Checking the mandelbrot algorithm
         """
-        z = 0
-        N = 0
-        while (N < 255):
-            z = z**2 + c
+        z = 0 # inital value of z
+        N = 0 # value of N to be plotted
+        while (N < 255): 
+            z = z**2 + c # iterative algorithm for the mandelbrot set
             if (abs(z) > 2):
-                return N
-            N += 1
-        return 0
+                return N # returning the value if it isnt a mandelbrot
+            N += 1 
+        return 0 #returning zero after threshold is crossed
     def plot_mandel(self):
         """
         Plotting the values based on the iterative algorithm
         """
-        # keep passing x,y into the check_mandel function. complex(x,y)
-        # run a loop across x and y 
-        # initialzie it in the grid?
         for i in range(self.height):
             for j in range(self.width):
-                c = complex(self.xs[j],self.ys[i])
-                N = self.check_mandel(c)
-                self.grid[i,j] = N
-        plt.imshow(self.grid, extent=(0,500,0,500))
-        plt.show()
+                c = complex(self.xs[j],self.ys[i]) # creating a complex number
+                N = self.check_mandel(c) # the value after which the threshold for mandelbrot is crossed
+                self.grid[i,j] = N # grid coordinates
+        plt.imshow(self.grid, extent=(0,500,0,500)) # imshow to plot the points
+        plt.show() # displaying
                 
                 
 
