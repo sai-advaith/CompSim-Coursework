@@ -6,8 +6,8 @@ class Mandelbrot(object):
         """
         Constructor
         """
-        self.width = width # width of the plot
-        self.height = height # height of the plot
+        self.width = width # width of the grid
+        self.height = height # height of the grid
         self.grid = np.zeros(shape = (width,height)) # initializing a grid of zeros
         self.xs = np.linspace(xlow,xhigh,width) # numpy array with high and low values initialized for a width for x axis. This forms the real axis
         self.ys = np.linspace(ylow,yhigh,height) # numpy array with high and low values initialized for a width for y axis. This forms the imaginary axis
@@ -32,7 +32,7 @@ class Mandelbrot(object):
                 c = complex(self.xs[j],self.ys[i]) # creating a complex number
                 N = self.check_mandel(c) # the value after which the threshold for mandelbrot is crossed
                 self.grid[i,j] = N # grid coordinates
-        plt.imshow(self.grid, extent=(0,500,0,500)) # imshow to plot the points
+        plt.imshow(self.grid, extent=(self.xs[0],self.xs[len(self.xs) - 1],self.ys[0],self.ys[len(self.ys) - 1])) # imshow to plot the points
         plt.show() # displaying
                 
                 
