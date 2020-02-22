@@ -29,8 +29,6 @@ class Traffic(object):
                     if (i == (k - 1) and road[0] == 0):
                         c[0] = 1
                         c[i] = 0
-                    if(road[i] == 0):
-                        moved+= 1
                     else: 
                         c[i] = 1
                 elif (road[i] == 0):
@@ -40,8 +38,6 @@ class Traffic(object):
                     if(i > 0 and road[i-1] == 1):
                         c[i] = 1
                         c[i-1] = 0
-                    if(road[i] == 1):
-                        moved+=1    
                 print(moved)            
             values = (c,moved)
             return values
