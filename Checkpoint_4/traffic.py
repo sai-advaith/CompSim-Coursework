@@ -15,9 +15,22 @@ class Traffic(object):
         N = np.zeros(len(self.road))
         arr = np.zeros(shape=(self.iterations,len(self.road)))
         ax = plt.axes()
-        values = (0,0)
-        r = 0.4
+        def changes(road,c):
+            k = []
+            for i in range(len(road)):
+                if(road[i] == 1):
+                    k.append(i)
+            j = 0
+            for i in k:
+                if c[i] == 0:
+                    j += 1
+            return j
+        def eq(x):
+            for i in range(1,len(x)):
+                if x[i] == x[i-1]:
+                    return i-1
         def movement(road):
+            values = (0,0)
             k = len(road)
             moved = 0
             c = np.zeros(len(road))
@@ -38,23 +51,25 @@ class Traffic(object):
                     if(i > 0 and road[i-1] == 1):
                         c[i] = 1
                         c[i-1] = 0
-                print(moved)            
+            moved = changes(c,road)
             values = (c,moved)
             return values
         def display(arr):
-            r = 0.1
+            r = 0.4
             for i in range(len(arr)):
                 for j in range(len(arr[i])):
                     if(arr[i][j] == 1):
-                        ax.add_patch(Circle((j,i),r,color='r'))
-        for i in range(self.iterations):
+                        ax.add_patch(Circle((j,i),r,color='b'))
+        arr[0] = self.road
+        d = []
+        for i in range(1,self.iterations):
             k = movement(self.road)
             N = k[0]
-            print(k[1])
             avg_speed = k[1]/self.cars()
             self.road = N
             arr[i] = N
-            # print(avg_speed)    
+            d.append(avg_speed)
+        print("equilbrium after {} iterations".format(eq(d)))
         display(arr)
         plt.axis('scaled')
         plt.show()
