@@ -1,6 +1,6 @@
 import numpy as np 
 import matplotlib.pyplot as plt
-from matplotlib.patches import Circle 
+from matplotlib.patches import Circle #document pls
 class Traffic(object):
     def __init__(self,road,iter):
         self.road = road
