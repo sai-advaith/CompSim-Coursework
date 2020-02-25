@@ -2,74 +2,85 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle #document pls
 class Traffic(object):
-    def __init__(self,road,iter):
+    def __init__(self,cars,road,iter):
+        """
+        Constructor to initalize the class variables
+        """
         self.road = road
         self.iterations = iter
-    def cars(self):
-        car = 0
-        for i in self.road:
-            if i == 1:
-                car += 1
-        return car
+        self.cars = cars
     def update(self):
+        """
+        Updating the positions of the cars based on the algorithm given
+        """
         N = np.zeros(len(self.road))
         arr = np.zeros(shape=(self.iterations,len(self.road)))
         ax = plt.axes()
         def changes(road,c):
+            """
+            Helper method to determine the number of cars that moved
+            """
             k = []
             for i in range(len(road)):
                 if(road[i] == 1):
                     k.append(i)
-            j = 0
+            j = 0 #  initially the cars moved are zero 
             for i in k:
-                if c[i] == 0:
+                if c[i] == 0: #  comparing it with initial positions of the car
                     j += 1
-            return j
-        def eq(x):
+            return j #  returning the number of cars that moved
+        def equilbrium(x):
+            """
+            Helper method to check if steady state has been achieved
+            """
             for i in range(1,len(x)):
-                if x[i] == x[i-1]:
-                    return i-1
+                if x[i] == x[i-1]: #  checking the previous and the current positions are the same
+                    return i-1 #  returning the position once the previous and current items are the same
         def movement(road):
-            values = (0,0)
+            """
+            Helper method to implement the movement of cars
+            """
             k = len(road)
             moved = 0
-            c = np.zeros(len(road))
+            c = np.zeros(len(road)) #  this is to store the updated array
             for i in range(k):
                 if (road[i] == 1):
                     if (i < k - 1 and road[i+1] == 0):
-                        c[i+1] = 1
+                        c[i+1] = 1 #  if 1 then check if its not last and then update
                         c[i] = 0
                     if (i == (k - 1) and road[0] == 0):
-                        c[0] = 1
+                        c[0] = 1 #  depending on whether its the last element or not
                         c[i] = 0
                     else: 
-                        c[i] = 1
+                        c[i] = 1 #  keep it intact if one and no operations can be performed
                 elif (road[i] == 0):
-                    if(i == 0 and road[k-1] == 1):
-                        c[0] = 1
+                    if(i == 0 and road[k-1] == 1): 
+                        c[0] = 1 # if zero check the previous and then move the last
                         c[k-1] = 0
                     if(i > 0 and road[i-1] == 1):
-                        c[i] = 1
+                        c[i] = 1 #  if not the last and previous is 1, then move the previous element
                         c[i-1] = 0
-            moved = changes(c,road)
-            values = (c,moved)
-            return values
+            moved = changes(c,road) # this is to get the cars that moved
+            return (c,moved) #  returning the tuple
         def display(arr):
+            """
+            Helper method to display the cars
+            """
             r = 0.4
             for i in range(len(arr)):
                 for j in range(len(arr[i])):
-                    if(arr[i][j] == 1):
+                    if(arr[i][j] == 1): #  if the position is occupied, then move the car
                         ax.add_patch(Circle((j,i),r,color='b'))
-        arr[0] = self.road
-        d = []
+        arr[0] = self.road #  initial position of the cars in a 2d array
+        d = [] #  storing the average speeds
         for i in range(1,self.iterations):
-            k = movement(self.road)
-            N = k[0]
-            avg_speed = k[1]/self.cars()
-            self.road = N
+            k = movement(self.road) #  implementing the algorithm
+            N = k[0] #  first element of the tuple is the updated positions of the car
+            avg_speed = k[1]/self.cars #  returning the average based on the number moved
+            self.road = N #  updating the array
             arr[i] = N
-            d.append(avg_speed)
-        print("equilbrium after {} iterations".format(eq(d)))
-        display(arr)
+            d.append(avg_speed) #  storing all the average velocities in an array
+        print("equilbrium after {} iterations".format(equilbrium(d))) #  printing equilibrium message
+        display(arr) #  displaying the array
         plt.axis('scaled')
         plt.show()

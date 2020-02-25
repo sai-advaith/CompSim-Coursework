@@ -1,21 +1,17 @@
 import numpy as np 
 from traffic import Traffic
+from random import randrange
 if __name__ == "__main__":
-    def check(e):
-        g = True
-        for ch in e:
-            if ch == 0 or ch == 1:
-                continue
-            else:
-                g = False
-        return g
-    buffer = []
-    a = int(input("size of the array:"))
-    for i in range(a):
-        buffer.append(int(input("element:")))
-        if (not check(buffer)):
-            raise ValueError("not appropriate value")
-    road = np.array(buffer)
+    size = int(input("size of the road: "))
+    road = np.zeros(shape=size)
+    density = float(input("density of the road: "))
     iterations = int(input("number of require interations:"))
-    tr = Traffic(road,iterations)
+    cars = size*density
+    i = 0
+    while(i<cars):
+        pos = randrange(len(road))
+        if (road[pos] == 0):
+            road[pos] = 1
+            i+=1
+    tr = Traffic(cars,road,iterations)
     tr.update()
