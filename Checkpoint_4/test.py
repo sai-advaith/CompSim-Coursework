@@ -5,11 +5,11 @@ if __name__ == "__main__":
     """
     Main method
     """
-    size = int(input("size of the road: "))
-    road = np.zeros(shape=size)
-    density = float(input("density of the road: "))
-    iterations = int(input("number of require interations:"))
-    cars = size*density
+    size = int(input("size of the road: ")) #  size of the road
+    road = np.zeros(shape=size) #  initalizing an empty zero array
+    density = float(input("density of the road: "))  #  density of the cars
+    iterations = int(input("number of require interations:")) #  nubmer of iterationss
+    cars = size*density #  number of cars
     i = 0
     while(i<cars):
         pos = randrange(len(road)) #  getting random position in the road
