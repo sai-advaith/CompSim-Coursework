@@ -1,6 +1,6 @@
+import matplotlib.pyplot as plt 
 import numpy as np 
 from traffic import Traffic
-from random import randrange
 if __name__ == "__main__":
     """
     Main method
@@ -24,4 +24,3 @@ if __name__ == "__main__":
             i+=1 #  increase car numbers placed
     tr = Traffic(cars,road,iterations) #  creating object
     print("average speed:",tr.update()) #  moving the car
-
