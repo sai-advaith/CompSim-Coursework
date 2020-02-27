@@ -7,9 +7,11 @@ if __name__ == "__main__":
     """
     size = int(input("size of the road: ")) #  size of the road
     road = np.zeros(shape=size) #  initalizing an empty zero array
-    density = float(input("density of the road: "))  #  density of the cars
-    iterations = int(input("number of require interations:")) #  nubmer of iterationss
+    density = float(input("density of the road: ")) #  density of the cars
+    if density > 1 or density < 0:
+        raise ValueError("Illegal density")
     cars = size*density #  number of cars
+    iterations = int(input("number of require interations:")) #  nubmer of iterationss
     i = 0
     while(i<cars):
         pos = randrange(len(road)) #  getting random position in the road
