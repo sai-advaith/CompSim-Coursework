@@ -11,7 +11,7 @@ if __name__ == "__main__":
     if density > 1 or density < 0:
         raise ValueError("Illegal density")
     cars = size*density #  number of cars
-    iterations = int(input("number of require interations:")) #  nubmer of iterationss
+    iterations = int(input("number of interations: ")) #  nubmer of iterationss
     i = 0
     while(i<cars):
         pos = randrange(len(road)) #  getting random position in the road
