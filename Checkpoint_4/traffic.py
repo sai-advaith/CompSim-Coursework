@@ -33,6 +33,13 @@ class Traffic(object):
             """
             Helper method to check if steady state has been achieved
             """
+            if (len(x) <= 1):
+                return 0
+            if (len(x) == 2):
+                if x[1] == x[0]:
+                    return 0
+                else:
+                    return 1
             for i in range(1,len(x)):
                 if x[i] == x[i-1]: #  checking the previous and the current positions are the same
                     return i-1 #  returning the position once the previous and current items are the same
@@ -76,7 +83,10 @@ class Traffic(object):
         for i in range(1,self.iterations):
             k = movement(self.road) #  implementing the algorithm
             N = k[0] #  first element of the tuple is the updated positions of the car
-            avg_speed = k[1]/self.cars #  returning the average based on the number moved
+            if (self.cars != 0):
+                avg_speed = k[1]/self.cars #  returning the average based on the number moved
+            else:
+                avg_speed = 0
             self.road = N #  updating the array
             arr[i] = N
             d.append(avg_speed) #  storing all the average velocities in an array
