@@ -2,12 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle #document pls
 class Traffic(object):
-    def __init__(self,cars,road,iter):
+    def __init__(self,cars,road,iterations):
         """
         Constructor to initalize the class variables
         """
         self.road = road
-        self.iterations = iter
+        self.iterations = iterations
         self.cars = cars
     def update(self):
         """
