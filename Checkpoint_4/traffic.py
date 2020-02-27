@@ -10,6 +10,9 @@ class Traffic(object):
         self.iterations = iterations
         self.cars = cars
     def movement(self):
+        """
+        Method to implement the movement of cars
+        """
         def changes(road,c):
             """
             Helper method to determine the number of cars that moved
@@ -23,9 +26,6 @@ class Traffic(object):
                 if c[i] == 0: #  comparing it with initial positions of the car
                     j += 1
             return j #  returning the number of cars that moved
-        """
-        Helper method to implement the movement of cars
-        """
         k = len(self.road)
         moved = 0
         c = np.zeros(len(self.road)) #  this is to store the updated array
