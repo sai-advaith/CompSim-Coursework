@@ -1,7 +1,7 @@
 import numpy as np 
 import matplotlib.pyplot as plt
 class Space(object):
-	def __init__(self,iterations,length,mass_mars,mass_phobos,radius_phobos):
+    	def __init__(self,iterations,length,mass_mars,mass_phobos,radius_phobos):
 		self.G = 6.67e-11
 		self.iterations = iterations
 		self.length = length
