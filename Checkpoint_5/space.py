@@ -15,6 +15,11 @@ class Space(object):
 		"""
 		v = self.G*self.mass_mars/self.radius_phobos #  usign formula given in the documentation
 		return v**(1/2)
+	def accel_initial(self):
+		n = self.G*self.mass_mars*self.mass_phobos
+		radius = self.radius_phobos**2
+		force = n/radius
+		return force/self.mass_phobos
 # TODO: check if the timestep inputted is way less than the period of Phobos
 	def update_vel(self):
 		"""
@@ -24,13 +29,15 @@ class Space(object):
 		for i in range(1,self.iterations):
 			new_v = velocities[i-1] + self.accel()*self.length
 			self.T += self.length
+			velocities.append(new_v)
 		return velocities 
 	def accel(self):
 		return 0
 		#TODO : implement the acceleration function
-	def radius(self):
-		radii = [self.radius_phobos]
+	def position(self):
+		positions = [self.radius_phobos]
 		for i in range(1,self.iterations):
-			new_radius = radii[i-1] +  self.update_vel()[i]*self.length
-			radii.append(new_radius)
-		return radii
+			new_position = positions[i-1] +  self.update_vel()[i]*self.length
+			positions.append(new_position)
+			self.T += self.length
+		return positions
