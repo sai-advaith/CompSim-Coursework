@@ -74,6 +74,13 @@ class Traffic(object):
         else:
             avg_speed = 0 
         return avg_speed
+    def isEquilibrium(self):
+        if len(self.avg) == 2:
+            return self.avg[1] == self.avg[0]
+        for i in range(1,self.avg):
+            if self.avg[i] == self.avg[i-1]:
+                return True
+        return False
     def update(self):
         """
         Updating the positions of the cars based on the algorithm given
@@ -103,7 +110,7 @@ class Traffic(object):
         display(arr) #  displaying the array
         plt.axis('scaled')
         plt.show()
-    def generateDesnities(self):
+    def generateDensities(self):
         """
         Generating all the desnities
         """
@@ -111,6 +118,16 @@ class Traffic(object):
         for i in range(len(self.road)+1): 
             densities.append(i/len(self.road))
         return densities
+    def untilAverage(self):
+        N = np.zeros(len(self.road))
+        self.avg = []
+        while(not self.isEquilibrium()):
+            k = self.movement()
+            N = k[0]
+            avg_speed = self.average()
+            self.road = N
+            self.avg.append(avg_speed)
+        return (self.equilbrium())
     def generateAverages(self):
         """
         Generating average velocities
@@ -119,7 +136,6 @@ class Traffic(object):
             """
             Helper method to generate the random road
             """
-            
             cars = density * len(self.road)
             i = 0
             road = [0]*len(self.road)
@@ -129,8 +145,15 @@ class Traffic(object):
                     road[pos] = 1
                     i+=1
             return road
-        d = self.generateDesnities()
-        averages = []
+        d = self.generateDensities()
+        av = []
         for i in range(len(d)):
             self.road = randomRoad(d[i])
-        return averages
+            av.append(self.untilAverage())
+        return av
+    def plotAvgDen(self):
+        """
+        Method to plot average velocities against the positions
+        """
+        plt.figure(2)
+        plt.plot(self.generateAverages(),self.generateDensities())
