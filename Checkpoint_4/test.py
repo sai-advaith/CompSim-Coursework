@@ -23,6 +23,5 @@ if __name__ == "__main__":
             road[pos] = 1
             i+=1 #  increase car numbers placed
     tr = Traffic(cars,road,iterations) #  creating object
-    print(tr.generateDesnities())
-    # print("average speed:",tr.update()) #  moving the car
+    tr.update() #  moving the car
 
