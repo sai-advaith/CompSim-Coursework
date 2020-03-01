@@ -75,6 +75,9 @@ class Traffic(object):
             avg_speed = 0 
         return avg_speed
     def isEquilibrium(self):
+        """
+        Checking if the equilibrium state has been achieved
+        """
         if len(self.avg) == 2:
             return self.avg[1] == self.avg[0]
         for i in range(1,len(self.avg)):
@@ -116,20 +119,20 @@ class Traffic(object):
         """
         Generating all the desnities
         """
-        densities = []
+        densities = [] #  storing them in a list
         for i in range(len(self.road)+1): 
             densities.append(i/len(self.road))
         return densities
     def untilAverage(self):
         N = np.zeros(len(self.road))
         self.avg = []
-        while(not self.isEquilibrium()):
+        while(not self.isEquilibrium()): #  keep running till equilibrium state has been achieved 
             k = self.movement()
             N = k[0]
             avg_speed = self.average()
-            self.road = N
+            self.road = N 
             self.avg.append(avg_speed)
-        return (self.equilbrium())
+        return (self.equilbrium()) #  equilibrium state on achieving it
     def generateAverages(self):
         """
         Generating average velocities
@@ -142,14 +145,14 @@ class Traffic(object):
             i = 0
             road = [0]*len(self.road)
             while(i < cars):
-                pos = randrange(len(road))
+                pos = randrange(len(road)) #  same method as in the test function
                 if (road[pos] == 0):
                     road[pos] = 1
                     i+=1
-            return road
+            return road #  returning the road
         d = self.generateDensities()
         av = []
         for i in range(len(d)):
             self.road = randomRoad(d[i])
-            av.append(self.untilAverage())
+            av.append(self.untilAverage()) #  generating averages
         return av
