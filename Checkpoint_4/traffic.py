@@ -77,7 +77,7 @@ class Traffic(object):
     def isEquilibrium(self):
         if len(self.avg) == 2:
             return self.avg[1] == self.avg[0]
-        for i in range(1,self.avg):
+        for i in range(1,len(self.avg)):
             if self.avg[i] == self.avg[i-1]:
                 return True
         return False
@@ -109,6 +109,8 @@ class Traffic(object):
         print("Average: ",self.equilbrium())
         display(arr) #  displaying the array
         plt.axis('scaled')
+        plt.figure(2)
+        plt.plot(self.generateDensities(),self.generateAverages())
         plt.show()
     def generateDensities(self):
         """
@@ -151,9 +153,3 @@ class Traffic(object):
             self.road = randomRoad(d[i])
             av.append(self.untilAverage())
         return av
-    def plotAvgDen(self):
-        """
-        Method to plot average velocities against the positions
-        """
-        plt.figure(2)
-        plt.plot(self.generateAverages(),self.generateDensities())
