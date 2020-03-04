@@ -9,6 +9,9 @@ GRAVITATIONAL_CONSTANT = 6.67408e-11
 class Simulation:
 
     def __init__(self):
+        """
+        Constructor
+        """
         data = np.genfromtxt("test_data.csv", delimiter=',', skip_header=1, usecols=(1, 2, 3, 4, 5)) #get data from the csv file
         m = [] #mass
         p = [] #position
@@ -35,7 +38,9 @@ class Simulation:
         return self.patches
 
     def run(self):
-        #running the animation
+        """
+        Running the animation
+        """
         fig = plt.figure()
         self.ax = plt.axes()
         for i in range(0, self.sys.scalars[0].size):
@@ -50,7 +55,10 @@ class Simulation:
         anim = FuncAnimation(fig, self.animate, init_func=self.init, frames=self.iter, repeat=False, interval=20, blit=False)
         plt.show()
 
-    def animate(self, i): #animatio on the go
+    def animate(self, i): 
+        """
+        Animation on the go
+        """
         self.sys.computeAcceleration()
         self.sys.computeVelocity()
         self.sys.computePosition()

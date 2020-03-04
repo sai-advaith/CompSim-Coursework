@@ -3,7 +3,6 @@ import numpy as np
 
 class Celestial(object):
     """docstring for Celestial"""
-    #INTIALIZING CELESTIAL OBJECT
     def __init__(self, dt, masses, positions, velocities): #constructor
         self.GRAVITATIONAL_CONSTANT = 6.67408e-11
         self.dt = dt
@@ -13,8 +12,9 @@ class Celestial(object):
         self.scalars = np.array([masses])
 
     def computeAcceleration(self):
-        # The body is at position r1
-        #calculating the acceleration
+        """
+        Calculating the acceleration
+        """
         for (index, masses) in enumerate(self.scalars[0]):
             temp_accelerations = np.empty([len(self.vectors[2]), 2])
             temp_accelerations[index] = np.array([0., 0.])
@@ -26,14 +26,20 @@ class Celestial(object):
             self.vectors[2][index] = np.sum(temp_accelerations, axis=0)
 
     def computeVelocity(self):
-        #compute the velocity
+        """
+        Computing Velocity
+        """
         self.vectors[1] = self.vectors[1] + (self.dt * self.vectors[2])
 
     def computePosition(self):
-        #computing/updating the position
+        """
+        Computing Position
+        """
         self.vectors[0] = self.vectors[0] + (self.dt * self.vectors[1])
 
     def computeKE(self):
-        #calculating the KE
+        """
+        Computing Kinetic Energy
+        """
         ke = 0.5 * self.scalars[0] * (np.linalg.norm(self.vectors[1], axis=1))**2
         self.ke.append(np.sum(ke))
