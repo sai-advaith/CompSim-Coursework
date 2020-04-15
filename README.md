@@ -1,2 +1,2 @@
 # CompSim-Coursework
-Checkpoint 4 does not work :(
+Coursework for the Computer Simulation course.
